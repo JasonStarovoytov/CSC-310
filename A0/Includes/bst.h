@@ -9,9 +9,13 @@ class node{
         node* R;
         node(){
             val = NULL;
+            L = NULL;
+            R = NULL;
         };
         node(int num){
             val = num;
+            L = NULL;
+            R = NULL;
         }
 };
 
@@ -25,6 +29,7 @@ class bst{
         void remove(int);
         void printBST();
         bool isBalanced();
+        node* findNode(int);
         
     private:
 
@@ -32,7 +37,6 @@ class bst{
         void printPreOrder(node*);
         void printPostOrder(node*);
         int hight(node*);
-        node* findNode(int);
         node* findPrevNode(int);
 
 };

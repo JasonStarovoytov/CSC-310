@@ -1,6 +1,6 @@
 INCLUDE_DIRS := Includes
 CC 			 := g++
-CFLAGS 		 := -I$(INCLUDE_DIRS)
+CFLAGS 		 := -I$(INCLUDE_DIRS) -g
 
 OBJS 		 := mainbst.o bst.o customErrorClass.o
 DEPS 		 := ${INCLUDE_DIRS}/bst.h ${INCLUDE_DIRS}/customErrorClass.h

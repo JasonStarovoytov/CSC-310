@@ -1,5 +1,5 @@
-#include "bst.h"
-#include "customErrorClass.h"
+#include "includes/bst.h"
+#include "includes/customErrorClass.h"
 #include <iostream>
 
 using namespace std;
@@ -10,6 +10,10 @@ bst::bst(){ // make an empty bst
 }
 
 void bst::printBST(){
+    if(root == NULL){
+        cout << "Tree is empty" << endl;
+        return;
+    }
     printPreOrder(root);
     cout << endl;
 }
@@ -100,7 +104,7 @@ node* bst::findNode(int value){     // search for a node given a value
 
 node* bst::findPrevNode(int value){     // find the parent of a node given a value
     node* tmp = root;
-    if(root->val == value || root->L->val == value || root->R->val == value){
+    if(root->val == value /*|| root->L->val == value || root->R->val == value*/){
         return root;
     }
     while (tmp != NULL) {
@@ -124,7 +128,6 @@ int bst::hight(node* tree){
     }
     int left = hight(tree->L);
     int right = hight(tree->R);
-
     return 1 + max(left, right);
     
 }
@@ -133,7 +136,22 @@ bool bst::isBalanced(){
     //cout << "tree hight: " << hight(root) << endl;
     //cout << "Left: " << hight(root->L) << endl << "Right: " << hight(root->R) << endl;
 
-    if(abs(hight(root->L) - hight(root->R)) <= 1){
+    if(root == NULL){
+        cout << "No values in tree" << endl;
+        return false;
+    }
+
+    int left = 0;
+    int right = 0;
+
+    if(root->L != NULL){
+        left = hight(root->L);
+    }
+    if(root->R != NULL){
+        right = hight(root->R);
+    }
+
+    if(abs(left - right) <= 1){
         return true;
     }
 
@@ -251,11 +269,12 @@ void bst::remove(int value){
         }
 
     }
-
+    
     isBalanced();
 
     delete target;
 
+    return;
 
 }
 
