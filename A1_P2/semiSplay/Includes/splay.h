@@ -28,8 +28,9 @@ class SplayTree {
         void printTree(Node* root, int space);
 
     public:
+        int swaps = 0;
         SplayTree();
-        Node* semiSplay( int key, int numSplays);
+        Node* semiSplay( int key, int numSplays, bool &found);
 
         void insert(int key);
         void remove(int key);

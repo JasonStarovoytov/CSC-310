@@ -10,6 +10,7 @@ SplayTree::SplayTree()
 SplayTree::Node* SplayTree::rotateRight(Node* x) {
     Node* y = x->left;
     if(x->weight <= y->weight){
+        swaps++;
         x->left = y->right;
         y->right = x;
         return y;
@@ -21,6 +22,7 @@ SplayTree::Node* SplayTree::rotateRight(Node* x) {
 SplayTree::Node* SplayTree::rotateLeft(Node* x) {
     Node* y = x->right;
     if(x->weight <= y->weight){
+        swaps++;
         x->right = y->left;
         y->left = x;
         return y;
@@ -149,7 +151,7 @@ void SplayTree::remove(int key) {
 
 bool SplayTree::search(int key) {
     root = splay(root, key);
-    cout << root->key;
+    //cout << root->key;
 
     Node* tmp = root;
     while(tmp != nullptr && tmp->key != key){

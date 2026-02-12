@@ -30,6 +30,7 @@ class SplayTree {
         void printTree(Node* root, int space);
 
     public:
+        int swaps = 0;
         SplayTree();
         void insert(int key);
         void remove(int key);

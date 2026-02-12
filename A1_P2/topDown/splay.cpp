@@ -8,6 +8,7 @@ SplayTree::SplayTree()
 
 // aka Zig
 SplayTree::Node* SplayTree::rotateRight(Node* x) {
+    swaps++;
     Node* y = x->left;
     x->left = y->right;
     y->right = x;
@@ -16,6 +17,7 @@ SplayTree::Node* SplayTree::rotateRight(Node* x) {
 
 // aka Zag
 SplayTree::Node* SplayTree::rotateLeft(Node* x) {
+    swaps++;
     Node* y = x->right;
     x->right = y->left;
     y->left = x;
@@ -143,7 +145,7 @@ void SplayTree::remove(int key) {
 
 bool SplayTree::search(int key) {
     root = splay(root, key);
-    cout << root->key;
+    //cout << root->key;
     return (root && root->key == key);
 }
 

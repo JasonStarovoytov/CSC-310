@@ -9,6 +9,7 @@ SplayTree::SplayTree()
 
 // aka Zig
 SplayTree::Node* SplayTree::rotateRight(Node* x) {
+    swaps++;
     Node* y = x->left;
     x->left = y->right;
     //-------------------
@@ -37,6 +38,7 @@ SplayTree::Node* SplayTree::rotateRight(Node* x) {
 
 // aka Zag
 SplayTree::Node* SplayTree::rotateLeft(Node* x) {
+    swaps++;
     Node* y = x->right;
     x->right = y->left;
 
@@ -121,6 +123,7 @@ SplayTree:: Node* SplayTree::insertNode(int key) {
         parent = curr;
 
         if(key == curr->key){
+            return root;
             throw MyException("Cannot add duplicate values");
         }
 
@@ -192,7 +195,7 @@ SplayTree::Node* SplayTree::deleteNode( int key) {
 
 
 void SplayTree::insert(int key) {
-    cout << key << endl;
+    //cout << key << endl;
 
     insertNode(key);
 }

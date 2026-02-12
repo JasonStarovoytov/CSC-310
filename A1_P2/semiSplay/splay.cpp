@@ -8,6 +8,7 @@ SplayTree::SplayTree()
 
 // aka Zig
 SplayTree::Node* SplayTree::rotateRight(Node* x) {
+    swaps++;
     Node* y = x->left;
     x->left = y->right;
     y->right = x;
@@ -16,6 +17,7 @@ SplayTree::Node* SplayTree::rotateRight(Node* x) {
 
 // aka Zag
 SplayTree::Node* SplayTree::rotateLeft(Node* x) {
+    swaps++;
     Node* y = x->right;
     x->right = y->left;
     y->left = x;
@@ -69,7 +71,9 @@ SplayTree::Node* SplayTree::splay(Node* root, int key) {
     }
 }
 
-SplayTree::Node* SplayTree::semiSplay(int key, int numSplays) {
+SplayTree::Node* SplayTree::semiSplay(int key, int numSplays, bool &found) {
+    if(root->key == key)
+        found = true;
     if (root == nullptr || root->key == key)
         return root;
     if(numSplays == 0){
@@ -89,14 +93,19 @@ SplayTree::Node* SplayTree::semiSplay(int key, int numSplays) {
             tmp = tmp->right;
         else if(key < tmp->key)
             tmp = tmp->left;
-        else
+        else{
+            found = true;
             return root;
+        }
     }
 
     bool lORr = (parent->right == tmp); // left = false, right = true
 
 
     tmp = splay(tmp, key);
+    if(tmp != nullptr && tmp->key == key)
+        found = true;
+        
     if(lORr){
         parent->right = tmp;
     }else{
@@ -180,9 +189,11 @@ void SplayTree::remove(int key) {
 
 
 bool SplayTree::search(int key) {
-    root = splay(root, key);
-    cout << root->key;
-    return (root && root->key == key);
+    bool found = false;
+    root = semiSplay(key, 15, found);
+    cout << found << endl;
+    return found;
+    //return (root && root->key == key);
 }
 
 
