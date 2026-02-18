@@ -98,7 +98,7 @@ void BST::rebuildTree(int size)
 
     // initial rotation
 
-    performRotation(extra);
+    //performRotation(extra);
 
     // next rotaions
     for(size = m / 2; size > 0; size /= 2){
@@ -108,7 +108,6 @@ void BST::rebuildTree(int size)
 
 }
 
-// left rotate every second node based count
 void BST::performRotation(int count)
 {
     Node* grandparent = nullptr;
@@ -116,20 +115,20 @@ void BST::performRotation(int count)
 
     for(int i = 0; i < count; i++)
     {
-        if(parent == nullptr || parent->right == nullptr)
+        if(parent == nullptr || parent->left == nullptr)
             break;
 
-        Node* child = parent->right;
-
-        rotateLeft(parent);
+        Node* child = parent->left;
+        cout << "hello" << endl;
+        rotateRight(parent);
 
         if(grandparent == nullptr)
             root = parent;
         else
-            grandparent->right = parent;
+            grandparent->left = parent;
 
         grandparent = parent;
-        parent = parent->right;
+        parent = parent->left;
     }
 }
 
@@ -220,7 +219,7 @@ void BST::dswBalance()
     Node* tmp = root;
     while(tmp != nullptr){
         size++;
-        tmp = tmp->right;
+        tmp = tmp->left;
     }
 
     rebuildTree(size);

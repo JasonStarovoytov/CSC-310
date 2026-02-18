@@ -26,6 +26,13 @@ int main()
     bst.insert(43);
     bst.insert(40);
     bst.insert(39);
+    bst.insert(16);
+    bst.insert(15);
+    bst.insert(14);
+    bst.insert(13);
+    bst.insert(12);
+    bst.insert(11);
+
 
     cout << "Orginal BST:";
     bst.display();
