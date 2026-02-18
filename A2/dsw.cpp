@@ -1,4 +1,5 @@
 #include "includes/dsw.h"
+#include "Includes/customErrorClass.h"
 
 // ----------------- PRIVATE ----------------------------------
 
@@ -6,7 +7,8 @@
 void BST::rotateRight(Node*& node) // passing the parent
 {
     if(node == nullptr || node->left == nullptr)
-        return;
+        throw MyException("cannot rotate right since node is null, or does not have a left child");
+        //return;
     
     // get the node to rotate R
     Node* leftChild = node->left; 
@@ -22,7 +24,8 @@ void BST::rotateRight(Node*& node) // passing the parent
 void BST::rotateLeft(Node*& node)
 {
     if(node == nullptr || node->right == nullptr)
-        return;
+        throw MyException("cannot rotate left since node is null, or does not have a right child");
+        //return;
 
     // get the node to rotate L
     Node* rightChild = node->right;
@@ -35,6 +38,9 @@ void BST::rotateLeft(Node*& node)
 }
 
 int BST::subtreeSize(Node* node){
+    if(node == nullptr)
+        throw MyException("cannot find size since node is null");
+
     int total = 0;
     if(node->left == nullptr && node->right == nullptr)
         return 1;
