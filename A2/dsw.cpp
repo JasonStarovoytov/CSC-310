@@ -65,7 +65,7 @@ void BST::createVine()
 
     while(parent != nullptr){
         if(child != nullptr){
-            cout << subtreeSize(child) << endl;
+            //cout << subtreeSize(child) << endl;
             if(subtreeSize(child) > 2){
                 rotateLeft(parent);
 
@@ -125,7 +125,6 @@ void BST::performRotation(int count)
             break;
 
         Node* child = parent->left;
-        cout << "hello" << endl;
         rotateRight(parent);
 
         if(grandparent == nullptr)
